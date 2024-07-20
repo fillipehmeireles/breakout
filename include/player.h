@@ -4,9 +4,12 @@
 #include "game_screen.h"
 #include <stdbool.h>
 
+#include "utils.h"
+
 typedef struct Player {
     SDL_Rect rect; 
     int step;
+    SDL_Color color;
 } Player;
 
 bool checkPlayerBorderCollision(Player p, GameBorder border);

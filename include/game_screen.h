@@ -5,8 +5,7 @@
 #define W_WIDTH 640
 #define W_HEIGHT 480
 
-#define SET_RENDER_DRAW_COLOR(renderer, color) SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a)
-
+#include "utils.h"
 typedef struct GameScreen {
     SDL_Color screen_color;
 } GameScreen;
@@ -16,8 +15,15 @@ typedef struct GameBorder{
     SDL_Color border_color;
 }GameBorder;
 
+typedef struct GameBorders{
+    GameBorder border_top;
+    GameBorder border_bottom;
+    GameBorder border_left;
+    GameBorder border_right;
+} GameBorders;
+
 typedef struct GameStats {
     char ** score;
 } GameStats;
-void drawBorders(SDL_Renderer *renderer, GameBorder *borders[], int borders_c);
+void drawBorders(SDL_Renderer *renderer, GameBorders game_borders);
 #endif

@@ -1,8 +1,10 @@
 #include "player.h"
+#include <assert.h>
 
 void drawPlayer(SDL_Renderer * renderer, Player *p)
 {
-    SDL_SetRenderDrawColor(renderer, 255,255, 255, 255);
+    assert(p != NULL);
+    SET_RENDER_DRAW_COLOR(renderer, p->color);
     SDL_RenderFillRect(renderer, &p->rect);
 }
 

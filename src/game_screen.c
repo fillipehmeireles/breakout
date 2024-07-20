@@ -1,12 +1,16 @@
 #include "game_screen.h"
 
 
-void drawBorders(SDL_Renderer *renderer, GameBorder *borders[], int borders_c)
+void drawBorders(SDL_Renderer *renderer, GameBorders game_borders)
 {
-    for(int i = 0; i < borders_c; i++)
-    {
-        SET_RENDER_DRAW_COLOR(renderer,borders[i]->border_color);
-        SDL_RenderFillRect(renderer, &borders[i]->rect);
+    SET_RENDER_DRAW_COLOR(renderer,game_borders.border_top.border_color);
+    SDL_RenderFillRect(renderer, &game_borders.border_top.rect);
+    SET_RENDER_DRAW_COLOR(renderer,game_borders.border_top.border_color);
+    SDL_RenderFillRect(renderer, &game_borders.border_bottom.rect);
 
-    }
+    SET_RENDER_DRAW_COLOR(renderer,game_borders.border_top.border_color);
+    SDL_RenderFillRect(renderer, &game_borders.border_left.rect);
+
+    SET_RENDER_DRAW_COLOR(renderer,game_borders.border_top.border_color);
+    SDL_RenderFillRect(renderer, &game_borders.border_right.rect);
 }

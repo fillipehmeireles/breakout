@@ -14,6 +14,8 @@ pub fn build(b: *std.Build) void {
     exe.addCSourceFile(.{ .file = b.path("src/main.c") });
     exe.addCSourceFile(.{ .file = b.path("src/player.c") });
     exe.addCSourceFile(.{ .file = b.path("src/game_screen.c") });
+    exe.addCSourceFile(.{ .file = b.path("src/blocks.c") });
+    exe.addCSourceFile(.{ .file = b.path("src/ball.c") });
 
     b.installArtifact(exe);
 }
