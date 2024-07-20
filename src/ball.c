@@ -1,6 +1,7 @@
 #include "ball.h"
 #include <assert.h>
 #include <utils.h>
+#include <SDL2/SDL_rect.h>
 
 void drawBall(SDL_Renderer *renderer, Ball *b)
 {
@@ -17,22 +18,22 @@ void updateBall(Ball *b, Player *p, GameBorders *game_borders, Block blocks [MAX
     if(!b->active)
         return;
 
-    if(b->rect.y == p->rect.y && (b->rect.x >= p->rect.x - b->rect.w && b->rect.x <= p->rect.x + p->rect.w))
+    if(SDL_HasIntersection(&b->rect,&p->rect))
     {
         b->step_y = - b->step_y;
     }
 
-    if(b->rect.y == game_borders->border_top.rect.y)
+    if(SDL_HasIntersection(&b->rect,&game_borders->border_top.rect))
     {
         b->step_y = - b->step_y;
     }
 
-    if(b->rect.x >= game_borders->border_right.rect.x && b->rect.y >= game_borders->border_right.rect.y)
+    if(SDL_HasIntersection(&b->rect,&game_borders->border_left.rect))
     {
         b->step_x = - b->step_x;
     }
 
-    if(b->rect.x <= game_borders->border_left.rect.x && b->rect.y >= game_borders->border_left.rect.y)
+    if(SDL_HasIntersection(&b->rect,&game_borders->border_right.rect))
     {
         b->step_x = - b->step_x;
     }
@@ -44,7 +45,7 @@ void updateBall(Ball *b, Player *p, GameBorders *game_borders, Block blocks [MAX
         {
             if(!blocks[i][j].active) continue;
 
-            if(b->rect.y == blocks[i][j].rect.y && (b->rect.x >= blocks[i][j].rect.x && b->rect.x <= blocks[i][j].rect.x + blocks[i][j].rect.w))
+            if(SDL_HasIntersection(&(b->rect),&blocks[i][j].rect))
             {
                 b->step_y = - b->step_y;
                 blocks[i][j].active = false;
